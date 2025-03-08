@@ -97,3 +97,11 @@ button {
 span button {
   margin-left: 5px;
 }
+
+.inlineInput.correct {
+  border: 2px solid green;
+}
+
+.inlineInput.incorrect {
+  border: 2px solid red;
+}

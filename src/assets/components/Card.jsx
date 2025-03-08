@@ -5,7 +5,9 @@ const Card = (props) => {
   const [flipped, setFlipped] = useState(false);
 
   const handleFlip = () => {
-    setFlipped(!flipped);
+    if (props.canFlip) {
+      setFlipped(!flipped);
+    }
   };
   return (
     <div

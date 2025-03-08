@@ -8,6 +8,9 @@ function App() {
   const [seenIndices, setSeenIndices] = useState([0]);
   const [index, setIndex] = useState(0);
   const [shuffledPlayers, setShuffledPlayers] = useState(players);
+  const [guess, setGuess] = useState("");
+  const [isCorrect, setIsCorrect] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
 
   const handleNext = () => {
     if (seenIndices.length >= players.length) {
@@ -20,12 +23,18 @@ function App() {
 
     setSeenIndices([...seenIndices, newIndex]);
     setIndex(newIndex);
+    setSubmitted(false);
+    setIsCorrect(false);
+    setGuess("");
   };
   const handleBack = () => {
     if (seenIndices.length > 1) {
       const newSeenIndices = seenIndices.slice(0, -1);
       setSeenIndices(newSeenIndices);
       setIndex(newSeenIndices[newSeenIndices.length - 1]);
+      setSubmitted(false);
+      setIsCorrect(false);
+      setGuess("");
     }
   };
 
@@ -38,6 +47,19 @@ function App() {
     setShuffledPlayers(shuffled);
     setSeenIndices([0]);
     setIndex(0);
+    setSubmitted(false);
+    setIsCorrect(false);
+    setGuess("");
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setSubmitted(true);
+    if (guess.toLowerCase() === shuffledPlayers[index].name.toLowerCase()) {
+      setIsCorrect(true);
+    } else {
+      setIsCorrect(false);
+    }
   };
 
   let currentPlayer = shuffledPlayers[index];
@@ -56,13 +78,21 @@ function App() {
           image={currentPlayer.image}
           difficulty={currentPlayer.difficulty}
           key={index}
+          canFlip={submitted}
         />
         <span class="inputBox">
           Guess the player here:{" "}
-          <form className="inlineForm">
-            <input ckassName="inlineInput" type="text"></input>
+          <form className="inlineForm" onSubmit={handleSubmit}>
+            <input
+              className={`inlineInput ${
+                submitted ? (isCorrect ? "correct" : "incorrect") : ""
+              }`}
+              type="text"
+              value={guess}
+              onChange={(e) => setGuess(e.target.value)}
+            ></input>
           </form>
-          <button>Submit</button>
+          <button type="submit">Submit</button>
         </span>
         <span>
           <button onClick={handleBack}>Back</button>
