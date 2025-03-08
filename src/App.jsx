@@ -7,6 +7,8 @@ import { useState } from "react";
 function App() {
   const [seenIndices, setSeenIndices] = useState([0]);
   const [index, setIndex] = useState(0);
+  const [shuffledPlayers, setShuffledPlayers] = useState(players);
+
   const handleNext = () => {
     if (seenIndices.length >= players.length) {
       setSeenIndices([0]);
@@ -14,7 +16,7 @@ function App() {
       return;
     }
 
-    let newIndex = (index + 1) % players.length;
+    let newIndex = (index + 1) % shuffledPlayers.length;
 
     setSeenIndices([...seenIndices, newIndex]);
     setIndex(newIndex);
@@ -27,7 +29,18 @@ function App() {
     }
   };
 
-  let currentPlayer = players[index];
+  const handleShuffle = () => {
+    const shuffled = [...players];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    setShuffledPlayers(shuffled);
+    setSeenIndices([0]);
+    setIndex(0);
+  };
+
+  let currentPlayer = shuffledPlayers[index];
   return (
     <>
       <div className="info">
@@ -54,6 +67,7 @@ function App() {
         <span>
           <button onClick={handleBack}>Back</button>
           <button onClick={handleNext}>Next</button>
+          <button onClick={handleShuffle}>Shuffle</button>
         </span>
       </div>
     </>
