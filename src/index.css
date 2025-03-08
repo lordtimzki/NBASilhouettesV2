@@ -1,0 +1,5 @@
+body {
+  background: linear-gradient(135deg, #1d428a 0%, #552583 100%);
+  background-attachment: fixed;
+  font-family: "Alata", sans-serif;
+}
