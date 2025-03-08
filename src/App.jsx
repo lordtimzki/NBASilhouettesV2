@@ -91,8 +91,8 @@ function App() {
               value={guess}
               onChange={(e) => setGuess(e.target.value)}
             ></input>
+            <button type="submit">Submit</button>
           </form>
-          <button type="submit">Submit</button>
         </span>
         <span>
           <button onClick={handleBack}>Back</button>

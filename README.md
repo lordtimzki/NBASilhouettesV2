@@ -30,7 +30,7 @@ The following **additional** features are implemented:
 
 Here's a walkthrough of implemented user stories:
 
-<img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+[Video Walkthrough](https://i.ibb.co/rGHj0M02/Kapture-2025-03-08-at-15-33-36.gif)
 
 <!-- Replace this with whatever GIF tool you used! -->
 
@@ -42,8 +42,6 @@ GIF created with Kap
 [peek](https://github.com/phw/peek) for Linux. -->
 
 ## Notes
-
-Describe any challenges encountered while building the app.
 
 ## License
 
